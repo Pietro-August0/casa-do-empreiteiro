@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Sinal NR</title>
+  <desc id="desc">Placa de Normas Regulamentadoras em formato de losango amarelo com a sigla NR.</desc>
+  <g transform="translate(100 100)">
+    <polygon points="0,-82 82,0 0,82 -82,0" fill="#F7C600" stroke="#1E1A17" stroke-width="4" />
+    <polygon points="0,-70 70,0 0,70 -70,0" fill="none" stroke="#FFF8C7" stroke-width="2" opacity=".55" />
+  </g>
+  <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="800" fill="#0B0B0D" letter-spacing="-2">NR</text>
+</svg>

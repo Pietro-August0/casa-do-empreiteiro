@@ -96,7 +96,7 @@
       alt: "Grupo de treinamento NR em canteiro de obra",
       caption: "Equipe reunida no canteiro",
       className: "nr-shot-wide",
-      focus: "50% 34%"
+      focus: "50% 62%"
     },
     {
       src: "assets/fotos-treinamentosNR/nr-treinamento-canteiro-aberto.jpeg",
