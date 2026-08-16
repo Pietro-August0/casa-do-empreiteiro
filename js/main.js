@@ -19,7 +19,7 @@
     },
     {
       iconClass: "fa-helmet-safety",
-      label: "EPI's e Sinalização",
+      label: "EPIs e Sinalização",
       desc: "Capacetes, luvas, óculos, sinalizadores e placas"
     },
     {
@@ -59,8 +59,65 @@
     }
   ];
 
+  const STORE_SHOTS = [
+    {
+      src: "assets/fotos-loja/fachada-loja-exterior.jpeg",
+      alt: "Fachada da Casa do Empreiteiro",
+      caption: "Fachada aberta e entrada da loja",
+      className: "store-shot-facade",
+      focus: "50% 6%"
+    },
+    {
+      src: "assets/fotos-loja/interior-uniformes-profissionais.jpeg",
+      alt: "Área de uniformes com vestuário profissional organizado",
+      caption: "Uniformes profissionais",
+      className: "store-shot-aisle",
+      focus: "50% 38%"
+    },
+    {
+      src: "assets/fotos-loja/interior-conexoes-hidraulicas.jpeg",
+      alt: "Área interna com conexões hidráulicas organizadas",
+      caption: "Conexões hidráulicas",
+      className: "store-shot-wall",
+      focus: "50% 42%"
+    },
+    {
+      src: "assets/fotos-loja/interior-limpeza-pos-obra.jpeg",
+      alt: "Setor com materiais de limpeza pós obra",
+      caption: "Limpeza pós obra",
+      className: "store-shot-stock",
+      focus: "50% 38%"
+    }
+  ];
+
+  const NR_SHOTS = [
+    {
+      src: "assets/fotos-treinamentosNR/nr-equipe-canteiro.jpeg",
+      alt: "Grupo de treinamento NR em canteiro de obra",
+      caption: "Equipe reunida no canteiro",
+      className: "nr-shot-wide",
+      focus: "50% 34%"
+    },
+    {
+      src: "assets/fotos-treinamentosNR/nr-treinamento-canteiro-aberto.jpeg",
+      alt: "Treinamento NR em obra com estrutura em andamento",
+      caption: "Treinamento em obra",
+      className: "nr-shot-tall",
+      focus: "50% 28%"
+    },
+    {
+      src: "assets/fotos-treinamentosNR/nr-treinamento-interno.jpeg",
+      alt: "Grupo reunido em treinamento NR em ambiente interno",
+      caption: "Treinamento interno",
+      className: "nr-shot-tall",
+      focus: "50% 30%"
+    }
+  ];
+
   const WHATSAPP_NUMBER = "5511963756414";
   const REDUCED_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let photoLightbox = null;
+  let photoLightboxCloseTimer = null;
 
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -75,10 +132,8 @@
   function buildSegmentSkeletons(count) {
     return Array.from({ length: count }, () => `
       <div class="seg-card seg-card-skeleton" aria-hidden="true">
-        <div class="seg-top">
-          <span class="seg-num skeleton-line skeleton-line-sm"></span>
-          <span class="seg-icon-wrap skeleton-icon"></span>
-        </div>
+        <span class="seg-num skeleton-line skeleton-line-sm"></span>
+        <span class="seg-media skeleton-media"></span>
         <div class="seg-content">
           <span class="skeleton-line skeleton-line-md"></span>
           <span class="skeleton-line skeleton-line-lg"></span>
@@ -115,12 +170,14 @@
         const num = String(index + 1).padStart(2, "0");
         return `
           <a class="seg-card" href="${waLink(seg.label)}" target="_blank" rel="noopener" aria-label="Falar sobre ${seg.label}">
-            <div class="seg-top">
-              <span class="seg-num">${num}</span>
-              <span class="seg-icon-wrap" aria-hidden="true">
-                <i class="fa-solid ${seg.iconClass} seg-icon"></i>
-              </span>
-            </div>
+            <span class="seg-num">${num}</span>
+            <span class="seg-media" aria-hidden="true">
+              ${
+                seg.photo
+                  ? `<img class="seg-photo" src="${seg.photo}" alt="" loading="lazy" decoding="async">`
+                  : `<span class="seg-media-fallback"><i class="fa-solid ${seg.iconClass} seg-icon"></i></span>`
+              }
+            </span>
             <div class="seg-content">
               <h3>${seg.label}</h3>
               <p>${seg.desc}</p>
@@ -156,6 +213,101 @@
     ticker.innerHTML = [...names, ...names]
       .map((name) => `<span>${name}</span>`)
       .join("");
+  }
+
+  function openPhotoLightbox(shot) {
+    if (!photoLightbox) return;
+    if (photoLightboxCloseTimer) {
+      window.clearTimeout(photoLightboxCloseTimer);
+      photoLightboxCloseTimer = null;
+    }
+
+    const image = qs("[data-lightbox-image]", photoLightbox);
+    const caption = qs("[data-lightbox-caption]", photoLightbox);
+    if (image) {
+      image.src = shot.src;
+      image.alt = shot.alt;
+    }
+    if (caption) {
+      caption.textContent = shot.caption;
+    }
+
+    photoLightbox.hidden = false;
+    requestAnimationFrame(() => photoLightbox.classList.add("is-open"));
+    document.body.classList.add("photo-lightbox-open");
+  }
+
+  function closePhotoLightbox() {
+    if (!photoLightbox || photoLightbox.hidden) return;
+
+    photoLightbox.classList.remove("is-open");
+    document.body.classList.remove("photo-lightbox-open");
+
+    photoLightboxCloseTimer = window.setTimeout(() => {
+      const image = qs("[data-lightbox-image]", photoLightbox);
+      if (image) {
+        image.removeAttribute("src");
+        image.removeAttribute("alt");
+      }
+      photoLightbox.hidden = true;
+      photoLightboxCloseTimer = null;
+    }, 220);
+  }
+
+  function initPhotoLightbox() {
+    photoLightbox = qs("#photoLightbox");
+    if (!photoLightbox) return;
+
+    qsa("[data-lightbox-close]", photoLightbox).forEach((button) => {
+      button.addEventListener("click", closePhotoLightbox);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closePhotoLightbox();
+    });
+  }
+
+  function renderPhotoGallery(gridSelector, shots) {
+    const grid = qs(gridSelector);
+    if (!grid) return;
+
+    grid.innerHTML = shots.map((shot) => `
+      <figure
+        class="gallery-shot ${shot.className || ""}"
+        tabindex="0"
+        role="button"
+        aria-label="Abrir foto ${shot.caption}"
+        data-lightbox-src="${shot.src}"
+        data-lightbox-alt="${shot.alt}"
+        data-lightbox-caption="${shot.caption}"
+      >
+        <div class="gallery-frame">
+          <img src="${shot.src}" alt="${shot.alt}" loading="lazy" decoding="async" style="object-position:${shot.focus || "50% 50%"}">
+        </div>
+        <figcaption>${shot.caption}</figcaption>
+      </figure>
+    `).join("");
+
+    qsa(".gallery-shot", grid).forEach((shotEl) => {
+      const shot = {
+        src: shotEl.dataset.lightboxSrc,
+        alt: shotEl.dataset.lightboxAlt,
+        caption: shotEl.dataset.lightboxCaption
+      };
+
+      shotEl.addEventListener("click", () => openPhotoLightbox(shot));
+      shotEl.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPhotoLightbox(shot);
+        }
+      });
+    });
+  }
+
+  function renderMediaSections() {
+    renderPhotoGallery("#storeGalleryGrid", STORE_SHOTS);
+    renderPhotoGallery("#nrGalleryGrid", NR_SHOTS);
   }
 
   function initHeaderScroll() {
@@ -347,8 +499,10 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initLoader();
+    initPhotoLightbox();
     renderSegments();
     renderTicker();
+    renderMediaSections();
     initHeaderScroll();
     initMobileMenu();
     initActiveNavigation();

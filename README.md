@@ -1,35 +1,44 @@
 # Casa do Empreiteiro
 
-Site institucional da Casa do Empreiteiro, com foco em materiais para obra, atendimento rápido e destaque para a parte de NR/certificação.
+A Casa do Empreiteiro é uma loja voltada para quem vive a rotina da obra e da reforma. O site foi pensado para apresentar o negócio de forma clara, destacar os principais segmentos e facilitar o contato com a equipe.
 
-## Sobre o projeto
+## O que o cliente encontra
 
-Este projeto é uma página estática feita com:
+- loja física em Cotia-SP
+- atendimento direto por WhatsApp
+- produtos para obra, reforma e manutenção
+- categorias organizadas para facilitar a busca
+- serviços de segurança do trabalho e NR
 
-- HTML
-- CSS
-- JavaScript puro
+## Serviços de NR e segurança do trabalho
 
-Não há framework, build step ou dependências de runtime.
+A empresa atende demandas técnicas para obra e para empresas, com foco nas normas mais procuradas no dia a dia:
 
-## Estrutura
+- NR-06, NR-10, NR-12, NR-18 e NR-35
+- elaboração de laudos
+- PGR, PCMSO e LTCAT
+- ordem de serviço NR-01 com foco psicossocial
+- inspeção de segurança do trabalho
+- acompanhamento técnico em canteiros de obra
+- treinamento online e presencial
+
+## Sobre o site
+
+O site foi montado com uma apresentação objetiva da loja, fotos do espaço e uma organização simples para facilitar a navegação do cliente.
+
+## Estrutura do projeto
 
 ```text
 /
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── main.js
-├── assets/
-│   ├── logo-ce.png
-│   └── imagens de apoio
-└── README.md
+├── css/style.css
+├── js/main.js
+└── assets/
 ```
 
-## Como rodar
+## Como abrir
 
-Você pode abrir o projeto com o Live Server no VS Code ou qualquer servidor local estático.
+Use o Live Server ou outro servidor estático local.
 
 Exemplo:
 
@@ -37,25 +46,8 @@ Exemplo:
 http://127.0.0.1:5500/index.html
 ```
 
-## O que o site cobre
+## Contato
 
-- apresentação da loja
-- catálogo por categorias
-- diferenciais do atendimento
-- localização
-- certificação e treinamentos NR
-- CTA para WhatsApp
-
-## Observações
-
-- A identidade visual segue a paleta azul e amarelo da marca.
-- O logo principal usa `assets/logo-ce.png`.
-- Os ícones são padronizados com Font Awesome.
-- A seção de produtos é renderizada dinamicamente via `js/main.js`.
-
-## Próximos ajustes possíveis
-
-- inserir fotos reais da loja e do estoque
-- revisar horários de funcionamento
-- refinar os textos de venda e de NR com conteúdo final do negócio
-
+- WhatsApp: (11) 96375-6414
+- Instagram: @casadoempreiteiro
+- Endereço: Estrada da Roselândia, 1962 — Cotia, SP
