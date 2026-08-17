@@ -632,7 +632,7 @@ section{ position:relative; }
   .nav{ gap:32px; }
   .nr-grid{ grid-template-columns:repeat(2, 1fr); }
 }
-@media (max-width:860px){
+@media (max-width:1024px){
   .hero-grid{ grid-template-columns:1fr; padding-bottom:24px; }
   .main-nav{ display:none; }
   .menu-toggle{ display:inline-flex; }
@@ -850,7 +850,7 @@ body:not(.page-ready){ overflow:hidden; }
 }
 
 /* ---------- mobile menu ---------- */
-@media (max-width:860px){
+@media (max-width:1024px){
   .menu-toggle{ display:flex; }
   .nav-actions{ right:16px; }
   .nav-cta{ margin-right:8px; }
@@ -1517,7 +1517,7 @@ h1,h2,h3{
   }
 }
 
-@media (max-width:860px){
+@media (max-width:1024px){
   .hero-visual{
     display:block;
   }
@@ -2454,6 +2454,8 @@ body.photo-lightbox-open{
     position:relative;
     inset:auto;
     width:100%;
+    min-width:0;
+    max-width:100%;
     height:auto;
     margin-top:0;
     pointer-events:auto;
@@ -2463,9 +2465,26 @@ body.photo-lightbox-open{
     grid-column:1;
     grid-row:3;
     display:grid;
+    grid-template-columns:minmax(0, 1fr);
     gap:14px;
     align-items:start;
     justify-content:start;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .hero-below .hero-actions{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    width:min(100%, 480px);
+    min-width:0;
+    justify-self:start;
+  }
+
+  .hero-below .hero-actions .btn{
+    min-width:0;
+    justify-content:center;
+    text-align:center;
   }
 
   .hero-below .lead{
@@ -2475,6 +2494,8 @@ body.photo-lightbox-open{
 
   .hero-entry-card{
     display:flex;
+    min-width:0;
+    max-width:100%;
     min-height:auto;
     padding:12px;
     background:#fff;
@@ -2484,8 +2505,10 @@ body.photo-lightbox-open{
   }
 
   .hero-entry-media{
-    min-height:320px;
-    aspect-ratio:4 / 3;
+    height:clamp(260px, 36vw, 340px);
+    min-height:0;
+    max-height:none;
+    aspect-ratio:auto;
     border-radius:18px;
   }
 
@@ -2510,7 +2533,7 @@ body.photo-lightbox-open{
   }
 }
 
-@media (max-width:860px){
+@media (max-width:1024px){
   :root{
     --header-h: 72px;
   }
@@ -2598,6 +2621,7 @@ body.photo-lightbox-open{
   }
 
   .hero-entry-media{
+    height:auto;
     min-height:220px;
     aspect-ratio:16 / 9;
     border-radius:18px;
