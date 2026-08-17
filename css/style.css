@@ -2312,6 +2312,15 @@ body.photo-lightbox-open{
   overflow-wrap:anywhere;
 }
 
+.seg-content h3.seg-title-tight{
+  font-size:14.5px !important;
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:auto;
+}
+
 .seg-content p{
   font-family:var(--body);
   font-size:13px;

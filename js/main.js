@@ -176,7 +176,7 @@
               }
             </span>
             <div class="seg-content">
-              <h3>${seg.label}</h3>
+              <h3 class="${seg.label === "Impermeabilizante" ? "seg-title-tight" : ""}">${seg.label}</h3>
               <p>${seg.desc}</p>
             </div>
             <span class="seg-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right"></i></span>
