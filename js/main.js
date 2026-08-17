@@ -3,59 +3,81 @@
 
   const SEGMENTS = [
     {
+      id: "alojamento",
       iconClass: "fa-bed",
       label: "Alojamento",
-      desc: "Beliches, redes, colchões e móveis para canteiro"
+      desc: "Colchões, redes e móveis para organizar o canteiro.",
+      products: [["assets/fotos-produtos/alojamento-colchao.png", "Colchão"], ["assets/fotos-produtos/alojamento-estante.png", "Estante"], ["assets/fotos-produtos/alojamento-rede.png", "Rede"]]
     },
     {
+      id: "utilidades",
       iconClass: "fa-boxes-stacked",
       label: "Utilidades",
-      desc: "Caixas, recipientes, baldes e utensílios diversos"
+      desc: "Recipientes e utensílios que facilitam a rotina da obra.",
+      products: [["assets/fotos-produtos/utilidades-garrafa.png", "Garrafa térmica"], ["assets/fotos-produtos/utilidades-caixa.png", "Caixa organizadora"], ["assets/fotos-produtos/utilidades-balde.png", "Balde"]]
     },
     {
+      id: "uniformes",
       iconClass: "fa-shirt",
       label: "Uniformes",
-      desc: "Camisetas, calças, botinas e vestuário profissional"
+      desc: "Vestuário profissional para proteção e conforto no trabalho.",
+      products: [["assets/fotos-produtos/uniformes-colete.png", "Colete refletivo"], ["assets/fotos-produtos/uniformes-calca.png", "Calça profissional"], ["assets/fotos-produtos/uniformes-botina.png", "Botina de segurança"]]
     },
     {
+      id: "epis",
       iconClass: "fa-helmet-safety",
       label: "EPIs e Sinalização",
-      desc: "Capacetes, luvas, óculos, sinalizadores e placas"
+      desc: "Proteção individual e sinalização para um canteiro mais seguro.",
+      products: [["assets/fotos-produtos/epis-capacete.png", "Capacete"], ["assets/fotos-produtos/epis-cone.png", "Cone de sinalização"], ["assets/fotos-produtos/epis-oculos.png", "Óculos de proteção"]]
     },
     {
+      id: "pintura",
       iconClass: "fa-paint-roller",
       label: "Pintura",
-      desc: "Tintas, vernizes, pincéis, rolos e acessórios"
+      desc: "Tintas e acessórios para preparação e acabamento.",
+      products: [["assets/fotos-produtos/pintura-tinta.png", "Tinta"], ["assets/fotos-produtos/pintura-rolo.png", "Rolo"], ["assets/fotos-produtos/pintura-pincel.png", "Pincel"]]
     },
     {
+      id: "limpeza",
       iconClass: "fa-broom",
       label: "Limpeza",
-      desc: "Desinfetantes, detergentes, vassouras e panos"
+      desc: "Itens essenciais para limpeza durante e depois da obra.",
+      products: [["assets/fotos-produtos/limpeza-vassoura.png", "Vassoura"], ["assets/fotos-produtos/limpeza-rodo.png", "Rodo"], ["assets/fotos-produtos/limpeza-pano.png", "Pano de limpeza"]]
     },
     {
+      id: "impermeabilizantes",
       iconClass: "fa-droplet",
-      label: "Impermeabilizante",
-      desc: "Membranas, seladores e produtos impermeabilizantes"
+      label: "Impermeabilizantes",
+      desc: "Soluções para vedar, proteger e evitar infiltrações.",
+      products: [["assets/fotos-produtos/impermeabilizante-selante.png", "Selante"], ["assets/fotos-produtos/impermeabilizante-manta.png", "Manta"], ["assets/fotos-produtos/impermeabilizante-balde-liquido.png", "Impermeabilizante líquido"]]
     },
     {
+      id: "fixacao",
       iconClass: "fa-screwdriver-wrench",
       label: "Fixação",
-      desc: "Parafusos, pregos, buchas, rebites e fixadores"
+      desc: "Fixadores para diferentes materiais e etapas do serviço.",
+      products: [["assets/fotos-produtos/fixacao-prego.png", "Pregos"], ["assets/fotos-produtos/fixacao-parafuso.png", "Parafusos"], ["assets/fotos-produtos/fixacao-bucha.png", "Buchas"]]
     },
     {
+      id: "ferramentas",
       iconClass: "fa-toolbox",
       label: "Ferramentas",
-      desc: "Chaves, martelos, serras, escadas e furadeiras"
+      desc: "Ferramentas confiáveis para medir, montar e construir.",
+      products: [["assets/fotos-produtos/ferramentas-trena.png", "Trena"], ["assets/fotos-produtos/ferramentas-alicate.png", "Alicate"], ["assets/fotos-produtos/ferramenta-martelo.png", "Martelo"]]
     },
     {
+      id: "hidraulica",
       iconClass: "fa-faucet-drip",
       label: "Conexões Hidráulicas",
-      desc: "Tubulações, registros, conexões e acessórios hidráulicos"
+      desc: "Conexões e acessórios para instalações hidráulicas.",
+      products: [["assets/fotos-produtos/hidraulica-te.png", "Conexão Tê"], ["assets/fotos-produtos/hidraulica-registro.png", "Registro"], ["assets/fotos-produtos/hidraulica-joelho.png", "Joelho"]]
     },
     {
+      id: "eletrica",
       iconClass: "fa-bolt",
       label: "Elétrica",
-      desc: "Fios, cabos, disjuntores, tomadas e instalações"
+      desc: "Materiais para instalações elétricas seguras e organizadas.",
+      products: [["assets/fotos-produtos/eletrica-tomada.png", "Tomada"], ["assets/fotos-produtos/eletrica-disjuntor.png", "Disjuntor"], ["assets/fotos-produtos/eletrica-cabo.png", "Cabo elétrico"]]
     }
   ];
 
@@ -114,7 +136,7 @@
     }
   ];
 
-  const WHATSAPP_NUMBER = "5511963756414";
+  const WHATSAPP_NUMBER = "5511914408209";
   const REDUCED_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let photoLightbox = null;
   let photoLightboxCloseTimer = null;
@@ -132,25 +154,36 @@
   function buildSegmentSkeletons(count) {
     return Array.from({ length: count }, () => `
       <div class="seg-card seg-card-skeleton" aria-hidden="true">
-        <span class="seg-media skeleton-media"></span>
-        <div class="seg-content">
-          <span class="skeleton-line skeleton-line-md"></span>
-          <span class="skeleton-line skeleton-line-lg"></span>
-          <span class="skeleton-line skeleton-line-xs"></span>
-        </div>
-        <span class="seg-arrow skeleton-arrow"></span>
+        <span class="skeleton-line skeleton-line-xs"></span>
+        <span class="skeleton-media"></span>
+        <span class="skeleton-line skeleton-line-md"></span>
+        <span class="skeleton-line skeleton-line-lg"></span>
+        <span class="skeleton-arrow"></span>
       </div>
     `).join("");
   }
 
   function initLoader() {
     const loader = qs("#pageLoader");
-    if (!loader) return;
+    const announcePageInteractive = () => {
+      document.body.classList.add("products-motion-ready");
+      document.dispatchEvent(new CustomEvent("page:interactive"));
+    };
+
+    if (!loader) {
+      document.body.classList.add("page-ready");
+      window.requestAnimationFrame(announcePageInteractive);
+      return;
+    }
 
     const hideLoader = () => {
+      if (document.body.classList.contains("page-ready")) return;
       document.body.classList.add("page-ready");
       loader.classList.add("is-hidden");
-      window.setTimeout(() => loader.remove(), 650);
+      window.setTimeout(() => {
+        loader.remove();
+        announcePageInteractive();
+      }, 650);
     };
 
     window.addEventListener("load", () => {
@@ -165,26 +198,50 @@
     if (!grid) return;
 
     const renderCards = () => {
-      grid.innerHTML = SEGMENTS.map((seg) => {
-        return `
-          <a class="seg-card" href="${waLink(seg.label)}" target="_blank" rel="noopener" aria-label="Falar sobre ${seg.label}">
-            <span class="seg-media" aria-hidden="true">
-              ${
-                seg.photo
-                  ? `<img class="seg-photo" src="${seg.photo}" alt="" loading="lazy" decoding="async">`
-                  : `<span class="seg-media-fallback"><i class="fa-solid ${seg.iconClass} seg-icon"></i></span>`
-              }
-            </span>
-            <div class="seg-content">
-              <h3 class="${seg.label === "Impermeabilizante" ? "seg-title-tight" : ""}">${seg.label}</h3>
-              <p>${seg.desc}</p>
+      grid.innerHTML = SEGMENTS.map((seg, index) => {
+        const panelId = `segment-panel-${seg.id}`;
+        const productMarkup = seg.products.map(([src, name], productIndex) => `
+          <figure class="product-float product-float-${productIndex + 1}">
+            <div class="product-image-wrap">
+              <img src="${src}" alt="${name}" loading="lazy" decoding="async">
             </div>
-            <span class="seg-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right"></i></span>
-          </a>`;
+          </figure>
+        `).join("");
+
+        return `
+          <article class="seg-card${index === 3 ? " is-open" : ""}" data-segment="${seg.id}">
+            <button class="seg-trigger" type="button" aria-expanded="${index === 3}" aria-controls="${panelId}">
+              <span class="seg-index">${String(index + 1).padStart(2, "0")}</span>
+              <span class="seg-icon-wrap icon-chip" aria-hidden="true"><i class="fa-solid ${seg.iconClass} seg-icon"></i></span>
+              <span class="seg-heading">
+                <span class="seg-title">${seg.label}</span>
+                <span class="seg-summary">${seg.desc}</span>
+              </span>
+              <span class="seg-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+            </button>
+            <div class="seg-panel" id="${panelId}" aria-hidden="${index !== 3}">
+              <div class="seg-panel-clip">
+                <div class="seg-panel-inner">
+                  <div class="seg-panel-copy">
+                    <span class="seg-panel-label">Alguns exemplos</span>
+                    <p>Consulte modelos, medidas e disponibilidade diretamente com nossa equipe.</p>
+                    <a class="btn btn-yellow seg-whatsapp" href="${waLink(seg.label)}" target="_blank" rel="noopener"${index === 3 ? "" : " tabindex=\"-1\""}>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                      <span>Consultar ${seg.label}</span>
+                    </a>
+                  </div>
+                  <div class="product-stage" aria-label="Exemplos de ${seg.label}">
+                    ${productMarkup}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>`;
       }).join("");
 
       grid.classList.remove("is-loading");
       grid.setAttribute("aria-busy", "false");
+      initSegmentAccordion();
       initReveal();
     };
 
@@ -200,6 +257,71 @@
     window.requestAnimationFrame(() => {
       window.setTimeout(renderCards, 120);
     });
+  }
+
+  function initSegmentAccordion() {
+    const grid = qs("#segGrid");
+    if (!grid) return;
+    const cards = qsa(".seg-card:not(.seg-card-skeleton)", grid);
+
+    const replayProductEntrance = (card) => {
+      if (!card || !card.classList.contains("is-open")) return;
+      card.classList.remove("products-entering");
+      void card.offsetWidth;
+      card.classList.add("products-entering");
+    };
+
+    const setCardState = (card, open) => {
+      const trigger = qs(".seg-trigger", card);
+      const panel = qs(".seg-panel", card);
+      const cta = qs(".seg-whatsapp", card);
+      card.classList.toggle("is-open", open);
+      trigger.setAttribute("aria-expanded", String(open));
+      panel.setAttribute("aria-hidden", String(!open));
+      if (open) {
+        cta.removeAttribute("tabindex");
+        if (document.body.classList.contains("products-motion-ready")) {
+          window.requestAnimationFrame(() => replayProductEntrance(card));
+        }
+      } else {
+        card.classList.remove("products-entering");
+        cta.setAttribute("tabindex", "-1");
+      }
+    };
+
+    cards.forEach((card) => {
+      const trigger = qs(".seg-trigger", card);
+      trigger.addEventListener("click", () => {
+        const willOpen = !card.classList.contains("is-open");
+        cards.forEach((other) => setCardState(other, other === card && willOpen));
+      });
+    });
+
+    const startInitialEntranceWhenVisible = () => {
+      const playCurrentOpenCard = () => {
+        const openCard = cards.find((card) => card.classList.contains("is-open"));
+        window.requestAnimationFrame(() => replayProductEntrance(openCard));
+      };
+
+      if (!("IntersectionObserver" in window)) {
+        playCurrentOpenCard();
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        playCurrentOpenCard();
+      }, { threshold: 0.12 });
+
+      observer.observe(grid);
+    };
+
+    if (document.body.classList.contains("products-motion-ready")) {
+      startInitialEntranceWhenVisible();
+    } else {
+      document.addEventListener("page:interactive", startInitialEntranceWhenVisible, { once: true });
+    }
   }
 
   function renderTicker() {

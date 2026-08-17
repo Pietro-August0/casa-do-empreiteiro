@@ -1755,14 +1755,14 @@ body{
 }
 
 .brand img{
-  width:36px;
-  height:36px;
+  width:48px;
+  height:48px;
   border-radius:50%;
 }
 
 .brand-mark{
-  width:36px;
-  height:36px;
+  width:48px;
+  height:48px;
   display:block;
   border-radius:50%;
   object-fit:cover;
@@ -2058,7 +2058,7 @@ body.photo-lightbox-open{
 }
 
 .about-grid{
-  grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
   gap:40px;
 }
 
@@ -2072,7 +2072,7 @@ body.photo-lightbox-open{
 .store-gallery{
   display:grid;
   gap:18px;
-  padding:22px;
+  padding:20px;
   background:#fff;
   border:1px solid var(--line);
   border-radius:24px;
@@ -2147,6 +2147,10 @@ body.photo-lightbox-open{
   aspect-ratio:4 / 5.35;
 }
 
+.store-shot-wall .gallery-frame img{
+  transform:scale(1.1);
+}
+
 .store-shot-aisle{
   grid-column:5 / span 4;
   aspect-ratio:4 / 5.35;
@@ -2155,6 +2159,14 @@ body.photo-lightbox-open{
 .store-shot-stock{
   grid-column:9 / span 4;
   aspect-ratio:4 / 5.35;
+}
+
+@media (min-width:641px){
+  .store-shot-wall,
+  .store-shot-aisle,
+  .store-shot-stock{
+    grid-row:2;
+  }
 }
 
 .store-gallery-note{
@@ -2638,6 +2650,12 @@ body.photo-lightbox-open{
 
   .about-panel{
     padding:18px;
+  }
+
+  .brand img,
+  .brand-mark{
+    width:42px;
+    height:42px;
   }
 
   .about-brand{
