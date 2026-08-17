@@ -1122,7 +1122,7 @@ h1,h2,h3{
 .hero{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(180deg, #eef4ff 0%, #e5ecf8 100%);
+  background:var(--paper);
   color:var(--ink);
   padding:34px 0 0;
 }
@@ -1146,7 +1146,9 @@ h1,h2,h3{
   inset:0;
   z-index:1;
   pointer-events:none;
-  background:none;
+  background:
+    linear-gradient(90deg, rgba(239,245,252,.98) 0%, rgba(239,245,252,.94) 18%, rgba(232,240,250,.84) 30%, rgba(232,240,250,.54) 44%, rgba(232,240,250,.20) 58%, rgba(232,240,250,0) 78%),
+    linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 42%, rgba(10,26,69,.12) 100%);
 }
 .hero-copy{
   position:relative;
