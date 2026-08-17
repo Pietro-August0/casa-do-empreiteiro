@@ -61,7 +61,7 @@
 
   const STORE_SHOTS = [
     {
-      src: "assets/fotos-loja/fachada-loja-exterior.jpeg",
+      src: "assets/fotos-loja/WhatsApp Image 2026-08-15 at 08.41.39.jpeg",
       alt: "Fachada da Casa do Empreiteiro",
       caption: "Fachada aberta e entrada da loja",
       className: "store-shot-facade",
@@ -83,8 +83,8 @@
     },
     {
       src: "assets/fotos-loja/interior-limpeza-pos-obra.jpeg",
-      alt: "Setor com materiais de limpeza pós obra",
-      caption: "Limpeza pós obra",
+      alt: "Setor de lâmpadas e iluminação",
+      caption: "Lâmpadas",
       className: "store-shot-stock",
       focus: "50% 38%"
     }
@@ -96,7 +96,7 @@
       alt: "Grupo de treinamento NR em canteiro de obra",
       caption: "Equipe reunida no canteiro",
       className: "nr-shot-wide",
-      focus: "50% 62%"
+      focus: "50% 68%"
     },
     {
       src: "assets/fotos-treinamentosNR/nr-treinamento-canteiro-aberto.jpeg",
@@ -132,7 +132,6 @@
   function buildSegmentSkeletons(count) {
     return Array.from({ length: count }, () => `
       <div class="seg-card seg-card-skeleton" aria-hidden="true">
-        <span class="seg-num skeleton-line skeleton-line-sm"></span>
         <span class="seg-media skeleton-media"></span>
         <div class="seg-content">
           <span class="skeleton-line skeleton-line-md"></span>
@@ -166,11 +165,9 @@
     if (!grid) return;
 
     const renderCards = () => {
-      grid.innerHTML = SEGMENTS.map((seg, index) => {
-        const num = String(index + 1).padStart(2, "0");
+      grid.innerHTML = SEGMENTS.map((seg) => {
         return `
           <a class="seg-card" href="${waLink(seg.label)}" target="_blank" rel="noopener" aria-label="Falar sobre ${seg.label}">
-            <span class="seg-num">${num}</span>
             <span class="seg-media" aria-hidden="true">
               ${
                 seg.photo
@@ -380,23 +377,6 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  function initMobileQuickNav() {
-    const links = qsa("[data-mobile-nav]");
-    if (!links.length) return;
-
-    window.addEventListener("scroll", () => {
-      const nearTop = window.scrollY < 280;
-      links.forEach((link) => {
-        link.classList.toggle(
-          "active",
-          nearTop
-            ? link.dataset.mobileNav === "topo"
-            : link.dataset.mobileNav === "segmentos" && window.scrollY < document.body.scrollHeight * 0.45
-        );
-      });
-    }, { passive: true });
-  }
-
   function initFaq() {
     qsa(".faq-item").forEach((item) => {
       const button = qs(".faq-q", item);
@@ -506,7 +486,6 @@
     initHeaderScroll();
     initMobileMenu();
     initActiveNavigation();
-    initMobileQuickNav();
     initFaq();
     initFloatingWa();
     initYear();
