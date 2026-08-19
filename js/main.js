@@ -5,56 +5,57 @@
     {
       id: "alojamento",
       iconClass: "fa-bed",
-      label: "Alojamento",
+      label: "Itens para alojamento",
       desc: "Colchões, redes e móveis para organizar o canteiro.",
       products: [["assets/fotos-produtos/alojamento-colchao.png", "Colchão"], ["assets/fotos-produtos/alojamento-estante.png", "Estante"], ["assets/fotos-produtos/alojamento-rede.png", "Rede"]]
     },
     {
       id: "utilidades",
       iconClass: "fa-boxes-stacked",
-      label: "Utilidades",
+      label: "Utilidades para obra",
       desc: "Recipientes e utensílios que facilitam a rotina da obra.",
       products: [["assets/fotos-produtos/utilidades-garrafa.png", "Garrafa térmica"], ["assets/fotos-produtos/utilidades-caixa.png", "Caixa organizadora"], ["assets/fotos-produtos/utilidades-balde.png", "Balde"]]
     },
     {
       id: "uniformes",
       iconClass: "fa-shirt",
-      label: "Uniformes",
+      label: "Uniformes profissionais",
       desc: "Vestuário profissional para proteção e conforto no trabalho.",
       products: [["assets/fotos-produtos/uniformes-colete.png", "Colete refletivo"], ["assets/fotos-produtos/uniformes-calca.png", "Calça profissional"], ["assets/fotos-produtos/uniformes-botina.png", "Botina de segurança"]]
     },
     {
       id: "epis",
       iconClass: "fa-helmet-safety",
-      label: "EPIs e Sinalização",
+      label: "EPI´s e itens de sinalização",
+      preserveCase: true,
       desc: "Proteção individual e sinalização para um canteiro mais seguro.",
       products: [["assets/fotos-produtos/epis-capacete.png", "Capacete"], ["assets/fotos-produtos/epis-cone.png", "Cone de sinalização"], ["assets/fotos-produtos/epis-oculos.png", "Óculos de proteção"]]
     },
     {
       id: "pintura",
       iconClass: "fa-paint-roller",
-      label: "Pintura",
+      label: "Materiais para pintura",
       desc: "Tintas e acessórios para preparação e acabamento.",
       products: [["assets/fotos-produtos/pintura-tinta.png", "Tinta"], ["assets/fotos-produtos/pintura-rolo.png", "Rolo"], ["assets/fotos-produtos/pintura-pincel.png", "Pincel"]]
     },
     {
       id: "limpeza",
       iconClass: "fa-broom",
-      label: "Limpeza",
+      label: "Itens de limpeza",
       desc: "Itens essenciais para limpeza durante e depois da obra.",
       products: [["assets/fotos-produtos/limpeza-vassoura.png", "Vassoura"], ["assets/fotos-produtos/limpeza-rodo.png", "Rodo"], ["assets/fotos-produtos/limpeza-pano.png", "Pano de limpeza"]]
     },
     {
       id: "impermeabilizantes",
       iconClass: "fa-droplet",
-      label: "Impermeabilizantes",
-      desc: "Soluções para vedar, proteger e evitar infiltrações.",
+      label: "Produtos impermeabilizantes",
+      desc: "Produtos para vedar, proteger e evitar infiltrações.",
       products: [["assets/fotos-produtos/impermeabilizante-selante.png", "Selante"], ["assets/fotos-produtos/impermeabilizante-manta.png", "Manta"], ["assets/fotos-produtos/impermeabilizante-balde-liquido.png", "Impermeabilizante líquido"]]
     },
     {
       id: "fixacao",
       iconClass: "fa-screwdriver-wrench",
-      label: "Fixação",
+      label: "Itens de fixação",
       desc: "Fixadores para diferentes materiais e etapas do serviço.",
       products: [["assets/fotos-produtos/fixacao-prego.png", "Pregos"], ["assets/fotos-produtos/fixacao-parafuso.png", "Parafusos"], ["assets/fotos-produtos/fixacao-bucha.png", "Buchas"]]
     },
@@ -75,7 +76,7 @@
     {
       id: "eletrica",
       iconClass: "fa-bolt",
-      label: "Elétrica",
+      label: "Materiais elétricos",
       desc: "Materiais para instalações elétricas seguras e organizadas.",
       products: [["assets/fotos-produtos/eletrica-tomada.png", "Tomada"], ["assets/fotos-produtos/eletrica-disjuntor.png", "Disjuntor"], ["assets/fotos-produtos/eletrica-cabo.png", "Cabo elétrico"]]
     }
@@ -140,6 +141,7 @@
   const REDUCED_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let photoLightbox = null;
   let photoLightboxCloseTimer = null;
+  let photoLightboxTrigger = null;
 
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -214,7 +216,7 @@
               <span class="seg-index">${String(index + 1).padStart(2, "0")}</span>
               <span class="seg-icon-wrap icon-chip" aria-hidden="true"><i class="fa-solid ${seg.iconClass} seg-icon"></i></span>
               <span class="seg-heading">
-                <span class="seg-title">${seg.label}</span>
+              <span class="seg-title${seg.preserveCase ? " preserve-case" : ""}">${seg.label}</span>
                 <span class="seg-summary">${seg.desc}</span>
               </span>
               <span class="seg-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
@@ -227,7 +229,7 @@
                     <p>Consulte modelos, medidas e disponibilidade diretamente com nossa equipe.</p>
                     <a class="btn btn-yellow seg-whatsapp" href="${waLink(seg.label)}" target="_blank" rel="noopener"${index === 3 ? "" : " tabindex=\"-1\""}>
                       <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                      <span>Consultar ${seg.label}</span>
+                      <span${seg.preserveCase ? " class=\"preserve-case\"" : ""}>Consultar ${seg.label}</span>
                     </a>
                   </div>
                   <div class="product-stage" aria-label="Exemplos de ${seg.label}">
@@ -328,13 +330,12 @@
     const ticker = qs("#ticker");
     if (!ticker) return;
 
-    const names = SEGMENTS.map((segment) => segment.label);
-    ticker.innerHTML = [...names, ...names]
-      .map((name) => `<span>${name}</span>`)
+    ticker.innerHTML = [...SEGMENTS, ...SEGMENTS]
+      .map((segment) => `<span${segment.preserveCase ? " class=\"preserve-case\"" : ""}>${segment.label}</span>`)
       .join("");
   }
 
-  function openPhotoLightbox(shot) {
+  function openPhotoLightbox(shot, trigger) {
     if (!photoLightbox) return;
     if (photoLightboxCloseTimer) {
       window.clearTimeout(photoLightboxCloseTimer);
@@ -351,8 +352,14 @@
       caption.textContent = shot.caption;
     }
 
+    photoLightboxTrigger = trigger || document.activeElement;
     photoLightbox.hidden = false;
-    requestAnimationFrame(() => photoLightbox.classList.add("is-open"));
+    photoLightbox.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      photoLightbox.classList.add("is-open");
+      const closeButton = qs(".photo-lightbox-close", photoLightbox);
+      if (closeButton) closeButton.focus();
+    });
     document.body.classList.add("photo-lightbox-open");
   }
 
@@ -361,6 +368,11 @@
 
     photoLightbox.classList.remove("is-open");
     document.body.classList.remove("photo-lightbox-open");
+    if (photoLightboxTrigger && document.contains(photoLightboxTrigger)) {
+      photoLightboxTrigger.focus();
+    }
+    photoLightboxTrigger = null;
+    photoLightbox.setAttribute("aria-hidden", "true");
 
     photoLightboxCloseTimer = window.setTimeout(() => {
       const image = qs("[data-lightbox-image]", photoLightbox);
@@ -382,7 +394,27 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closePhotoLightbox();
+      if (photoLightbox.hidden) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closePhotoLightbox();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusable = qsa("button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])", photoLightbox)
+        .filter((element) => !element.hidden);
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -391,20 +423,19 @@
     if (!grid) return;
 
     grid.innerHTML = shots.map((shot) => `
-      <figure
+      <button
         class="gallery-shot ${shot.className || ""}"
-        tabindex="0"
-        role="button"
+        type="button"
         aria-label="Abrir foto ${shot.caption}"
         data-lightbox-src="${shot.src}"
         data-lightbox-alt="${shot.alt}"
         data-lightbox-caption="${shot.caption}"
       >
-        <div class="gallery-frame">
+        <span class="gallery-frame">
           <img src="${shot.src}" alt="${shot.alt}" loading="lazy" decoding="async" style="object-position:${shot.focus || "50% 50%"}">
-        </div>
-        <figcaption>${shot.caption}</figcaption>
-      </figure>
+        </span>
+        <span class="gallery-caption">${shot.caption}</span>
+      </button>
     `).join("");
 
     qsa(".gallery-shot", grid).forEach((shotEl) => {
@@ -414,13 +445,7 @@
         caption: shotEl.dataset.lightboxCaption
       };
 
-      shotEl.addEventListener("click", () => openPhotoLightbox(shot));
-      shotEl.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openPhotoLightbox(shot);
-        }
-      });
+      shotEl.addEventListener("click", () => openPhotoLightbox(shot, shotEl));
     });
   }
 
@@ -502,22 +527,28 @@
   function initFaq() {
     qsa(".faq-item").forEach((item) => {
       const button = qs(".faq-q", item);
-      if (!button) return;
+      const answer = qs(".faq-a", item);
+      if (!button || !answer) return;
+
+      const setItemState = (target, open) => {
+        target.classList.toggle("open", open);
+        const targetButton = qs(".faq-q", target);
+        const targetAnswer = qs(".faq-a", target);
+        if (targetButton) targetButton.setAttribute("aria-expanded", String(open));
+        if (targetAnswer) targetAnswer.setAttribute("aria-hidden", String(!open));
+      };
 
       button.addEventListener("click", () => {
         const wasOpen = item.classList.contains("open");
 
         qsa(".faq-item").forEach((other) => {
-          other.classList.remove("open");
-          const otherButton = qs(".faq-q", other);
-          if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+          setItemState(other, false);
         });
 
-        item.classList.toggle("open", !wasOpen);
-        button.setAttribute("aria-expanded", String(!wasOpen));
+        setItemState(item, !wasOpen);
       });
 
-      button.setAttribute("aria-expanded", String(item.classList.contains("open")));
+      setItemState(item, item.classList.contains("open"));
     });
   }
 

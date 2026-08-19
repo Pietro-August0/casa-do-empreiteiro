@@ -7,6 +7,7 @@ Esta pasta concentra as imagens usadas no site e o acervo bruto da loja.
 ### Loja
 
 - `logo-ce.png` — logo principal
+- `preview-desktop.png` — captura usada na apresentação do projeto
 - `fotos-loja/fachada-loja-exterior.jpeg` — foto da entrada/fachada
 - `fotos-loja/interior-uniformes-profissionais.jpeg` — setor de uniformes
 - `fotos-loja/interior-conexoes-hidraulicas.jpeg` — setor de conexões hidráulicas
