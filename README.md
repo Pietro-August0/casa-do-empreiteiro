@@ -12,7 +12,7 @@ Site institucional da Casa do Empreiteiro, loja de materiais para construção e
 - navegação por seções, menu mobile, FAQ e lightbox acessíveis por teclado
 - integração com WhatsApp, Instagram e Google Maps
 - suporte à preferência por movimento reduzido
-- metadados básicos para busca e compartilhamento
+- metadados, sitemap, robots.txt e dados estruturados para busca e compartilhamento
 
 ## Tecnologias
 
@@ -41,6 +41,8 @@ Depois, abra o endereço informado pelo comando no navegador.
 ```text
 /
 ├── index.html
+├── robots.txt
+├── sitemap.xml
 ├── css/
 │   ├── style.css
 │   └── products.css
@@ -58,10 +60,12 @@ O arquivo `assets/README.md` registra a organização das mídias. A pasta tamb�
 
 ## Status e publicação
 
-O site está funcional e pronto para hospedagem estática. Ainda não há uma URL pública registrada neste repositório. Quando houver um domínio definitivo, ele também deverá ser usado nos metadados `canonical`, `og:url` e `og:image`.
+O site está funcional e pronto para hospedagem estática. Os arquivos de SEO usam `https://casadoempreiteiroepis.com.br/` como domínio público. Se o domínio definitivo for outro, atualize esse endereço em `index.html`, `robots.txt` e `sitemap.xml`.
 
 ## Contato da loja
 
 - WhatsApp: (11) 91440-8209
+- E-mail: casadoempreiteiro26@gmail.com
 - Instagram: [@casadoempreiteiro](https://instagram.com/casadoempreiteiro)
+- Google Maps: [Casa do Empreiteiro](https://maps.app.goo.gl/1MghBiiATcDAtLvJ7)
 - Endereço: Estrada da Roselândia, 1960 — Cotia, SP
