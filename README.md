@@ -64,4 +64,4 @@ O site está funcional e pronto para hospedagem estática. Ainda não há uma UR
 
 - WhatsApp: (11) 91440-8209
 - Instagram: [@casadoempreiteiro](https://instagram.com/casadoempreiteiro)
-- Endereço: Estrada da Roselândia, 1962 — Cotia, SP
+- Endereço: Estrada da Roselândia, 1960 — Cotia, SP
