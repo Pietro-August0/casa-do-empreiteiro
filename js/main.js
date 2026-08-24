@@ -27,7 +27,6 @@
       id: "epis",
       iconClass: "fa-helmet-safety",
       label: "EPI´s e itens de sinalização",
-      preserveCase: true,
       desc: "Proteção individual e sinalização para um canteiro mais seguro.",
       products: [["assets/fotos-produtos/epis-capacete.png", "Capacete"], ["assets/fotos-produtos/epis-cone.png", "Cone de sinalização"], ["assets/fotos-produtos/epis-oculos.png", "Óculos de proteção"]]
     },
@@ -211,25 +210,25 @@
         `).join("");
 
         return `
-          <article class="seg-card${index === 3 ? " is-open" : ""}" data-segment="${seg.id}">
-            <button class="seg-trigger" type="button" aria-expanded="${index === 3}" aria-controls="${panelId}">
+          <article class="seg-card" data-segment="${seg.id}">
+            <button class="seg-trigger" type="button" aria-expanded="false" aria-controls="${panelId}">
               <span class="seg-index">${String(index + 1).padStart(2, "0")}</span>
               <span class="seg-icon-wrap icon-chip" aria-hidden="true"><i class="fa-solid ${seg.iconClass} seg-icon"></i></span>
               <span class="seg-heading">
-              <span class="seg-title${seg.preserveCase ? " preserve-case" : ""}">${seg.label}</span>
+              <span class="seg-title">${seg.label}</span>
                 <span class="seg-summary">${seg.desc}</span>
               </span>
               <span class="seg-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
             </button>
-            <div class="seg-panel" id="${panelId}" aria-hidden="${index !== 3}">
+            <div class="seg-panel" id="${panelId}" aria-hidden="true">
               <div class="seg-panel-clip">
                 <div class="seg-panel-inner">
                   <div class="seg-panel-copy">
                     <span class="seg-panel-label">Alguns exemplos</span>
                     <p>Consulte modelos, medidas e disponibilidade diretamente com nossa equipe.</p>
-                    <a class="btn btn-yellow seg-whatsapp" href="${waLink(seg.label)}" target="_blank" rel="noopener"${index === 3 ? "" : " tabindex=\"-1\""}>
+                    <a class="btn btn-yellow seg-whatsapp" href="${waLink(seg.label)}" target="_blank" rel="noopener" tabindex="-1">
                       <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                      <span${seg.preserveCase ? " class=\"preserve-case\"" : ""}>Consultar ${seg.label}</span>
+                      <span>Consultar ${seg.label}</span>
                     </a>
                   </div>
                   <div class="product-stage" aria-label="Exemplos de ${seg.label}">
@@ -331,8 +330,8 @@
     if (!ticker) return;
 
     ticker.innerHTML = [...SEGMENTS, ...SEGMENTS]
-      .map((segment) => `<span${segment.preserveCase ? " class=\"preserve-case\"" : ""}>${segment.label}</span>`)
-      .join("");
+      .map((segment) => `<span>${segment.label}</span>`)
+J      .join("");
   }
 
   function openPhotoLightbox(shot, trigger) {

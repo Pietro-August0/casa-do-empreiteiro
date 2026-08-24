@@ -68,7 +68,6 @@ section{ position:relative; }
 
 :focus-visible{ outline:3px solid var(--yellow); outline-offset:2px; }
 
-.preserve-case{ text-transform:none; }
 
 /* ---------- ficha técnica frame (signature element) ---------- */
 .ficha{
