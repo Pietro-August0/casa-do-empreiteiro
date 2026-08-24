@@ -331,7 +331,7 @@
 
     ticker.innerHTML = [...SEGMENTS, ...SEGMENTS]
       .map((segment) => `<span>${segment.label}</span>`)
-J      .join("");
+      .join("");
   }
 
   function openPhotoLightbox(shot, trigger) {
