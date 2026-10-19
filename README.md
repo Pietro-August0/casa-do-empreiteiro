@@ -64,7 +64,7 @@ O site está funcional e pronto para hospedagem estática. Os arquivos de SEO us
 
 ## Contato da loja
 
-- WhatsApp: (11) 91440-8209
+- WhatsApp: (11) 96375-6414
 - E-mail: casadoempreiteiro26@gmail.com
 - Instagram: [@casadoempreiteiro](https://instagram.com/casadoempreiteiro)
 - Google Maps: [Casa do Empreiteiro](https://maps.app.goo.gl/1MghBiiATcDAtLvJ7)
